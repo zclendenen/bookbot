@@ -3,7 +3,7 @@ def main():
     text = get_book_text(book_path)
     word_count = get_word_count(text)
     char_count = individual_character_count(text)
-    print(char_count)
+    book_report(word_count, char_count)
     
 
 
@@ -30,8 +30,20 @@ def individual_character_count(text):
             character_count[lower] += 1
     return character_count
             
+def book_report(word_count, char_count):
+    char_count_list = []
+    def sort_on(dict):
+        return dict["count"]
+    for char, count in char_count.items():
+        if char.isalpha():
+            char_count_list.append({
+                "char": char,
+                "count": count
+            })
+    char_count_list.sort(reverse=True, key=sort_on)
+    print(char_count_list)
 
 
 
 
-main()
+main() 
